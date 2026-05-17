@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Marketplace</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --bg:#050816;
+    --card:#0f172a;
+    --card2:#111827;
+    --line:#1e293b;
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --primary:#3b82f6;
+    --primary2:#2563eb;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+/* BACKGROUND */
+
+.bg-blur{
+    position:fixed;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    background:rgba(59,130,246,.12);
+    filter:blur(140px);
+    z-index:-1;
+}
+
+.blur-1{
+    top:-200px;
+    left:-100px;
+}
+
+.blur-2{
+    right:-200px;
+    bottom:-250px;
+}
+
+/* NAVBAR */
+
+header{
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:999;
+    backdrop-filter:blur(20px);
+    background:rgba(5,8,22,.75);
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.navbar{
+    width:90%;
+    max-width:1400px;
+    margin:auto;
+    padding:22px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:1.4rem;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:var(--primary);
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:35px;
+}
+
+nav a{
+    text-decoration:none;
+    color:var(--muted);
+    font-weight:500;
+    transition:.3s;
+    position:relative;
+}
+
+nav a:hover{
+    color:#fff;
+}
+
+.nav-btn{
+    padding:12px 22px;
+    background:linear-gradient(to right,var(--primary),var(--primary2));
+    border-radius:12px;
+    color:#fff !important;
+}
+
+/* HERO */
+
+.hero{
+    width:90%;
+    max-width:1400px;
+    margin:auto;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:80px;
+    padding-top:120px;
+}
+
+.hero-content{
+    flex:1;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    padding:10px 18px;
+    border-radius:50px;
+    margin-bottom:30px;
+    color:#cbd5e1;
+    font-size:.92rem;
+}
+
+.hero h1{
+    font-size:4.2rem;
+    line-height:1.1;
+    margin-bottom:25px;
+    font-weight:800;
+}
+
+.hero h1 span{
+    color:var(--primary);
+}
+
+.hero p{
+    color:var(--muted);
+    line-height:1.9;
+    max-width:700px;
+    font-size:1.05rem;
+    margin-bottom:40px;
+}
+
+/* SEARCH */
+
+.search-box{
+    width:100%;
+    max-width:760px;
+    display:flex;
+    align-items:center;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    overflow:hidden;
+    backdrop-filter:blur(20px);
+}
+
+.search-box input{
+    flex:1;
+    background:transparent;
+    border:none;
+    outline:none;
+    padding:22px;
+    color:#fff;
+    font-size:1rem;
+}
+
+.search-box input::placeholder{
+    color:#64748b;
+}
+
+.search-box button{
+    border:none;
+    background:linear-gradient(to right,var(--primary),var(--primary2));
+    color:#fff;
+    padding:22px 35px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.search-box button:hover{
+    opacity:.9;
+}
+
+/* HERO CARD */
+
+.hero-card{
+    width:420px;
+    background:linear-gradient(145deg,#0f172a,#111827);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:32px;
+    padding:35px;
+    box-shadow:0 30px 80px rgba(0,0,0,.45);
+}
+
+.hero-card img{
+    width:100%;
+    border-radius:22px;
+    margin-bottom:25px;
+    height:250px;
+    object-fit:cover;
+}
+
+.hero-card h3{
+    margin-bottom:15px;
+    font-size:1.5rem;
+}
+
+.hero-card p{
+    color:var(--muted);
+    line-height:1.7;
+    margin-bottom:25px;
+}
+
+.hero-card a{
+    display:inline-block;
+    padding:14px 24px;
+    background:rgba(59,130,246,.15);
+    border:1px solid rgba(59,130,246,.3);
+    border-radius:12px;
+    text-decoration:none;
+    color:#fff;
+    transition:.3s;
+}
+
+.hero-card a:hover{
+    background:var(--primary);
+}
+
+/* SECTION */
+
+.section{
+    width:90%;
+    max-width:1400px;
+    margin:auto;
+    padding:120px 0;
+}
+
+.section-header{
+    margin-bottom:60px;
+}
+
+.section-header span{
+    color:var(--primary);
+    font-weight:600;
+    letter-spacing:1px;
+}
+
+.section-header h2{
+    font-size:3rem;
+    margin-top:15px;
+}
+
+.section-header p{
+    margin-top:20px;
+    color:var(--muted);
+    max-width:700px;
+    line-height:1.8;
+}
+
+/* GRID */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+}
+
+/* CARD */
+
+.card{
+    background:linear-gradient(145deg,#0f172a,#111827);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:28px;
+    overflow:hidden;
+    transition:.4s;
+    position:relative;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:rgba(59,130,246,.45);
+    box-shadow:0 20px 60px rgba(0,0,0,.45);
+}
+
+.card img{
+    width:100%;
+    height:240px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:30px;
+}
+
+.card-tag{
+    display:inline-block;
+    background:rgba(59,130,246,.12);
+    color:#93c5fd;
+    padding:8px 15px;
+    border-radius:50px;
+    font-size:.85rem;
+    margin-bottom:20px;
+}
+
+.card h3{
+    font-size:1.6rem;
+    margin-bottom:15px;
+}
+
+.card p{
+    color:var(--muted);
+    line-height:1.8;
+    margin-bottom:28px;
+}
+
+.card a{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:#fff;
+    font-weight:600;
+    padding:14px 22px;
+    border-radius:14px;
+    background:linear-gradient(to right,var(--primary),var(--primary2));
+    transition:.3s;
+}
+
+.card a:hover{
+    transform:scale(1.03);
+}
+
+/* STATS */
+
+.stats{
+    margin-top:90px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.stat-box{
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.06);
+    padding:35px;
+    border-radius:24px;
+    text-align:center;
+}
+
+.stat-box h3{
+    font-size:2.5rem;
+    margin-bottom:10px;
+}
+
+.stat-box p{
+    color:var(--muted);
+}
+
+/* FOOTER */
+
+footer{
+    border-top:1px solid rgba(255,255,255,.06);
+    padding:50px 0;
+    margin-top:80px;
+}
+
+.footer-content{
+    width:90%;
+    max-width:1400px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.footer-content p{
+    color:#64748b;
+}
+
+.footer-links{
+    display:flex;
+    gap:25px;
+}
+
+.footer-links a{
+    text-decoration:none;
+    color:#94a3b8;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .hero-card{
+        width:100%;
+        max-width:500px;
+    }
+
+    .search-box{
+        margin:auto;
+    }
+
+}
+
+@media(max-width:768px){
+
+    nav{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:2.8rem;
+    }
+
+    .section-header h2{
+        font-size:2.2rem;
+    }
+
+    .search-box{
+        flex-direction:column;
+        border-radius:20px;
+    }
+
+    .search-box button{
+        width:100%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg-blur blur-1"></div>
+<div class="bg-blur blur-2"></div>
+
+<!-- NAVBAR -->
+
+<header>
+
+    <div class="navbar">
+
+        <div class="logo">
+            Market-Store<span>.</span>
+        </div>
+
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#productos">Productos</a>
+            <a href="#">Contacto</a>
+            <a href="#" class="nav-btn">Nuestro SITE</a>
+        </nav>
+
+    </div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero" id="inicio">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            Plataforma Premium de Servicios y Productos
+        </div>
+
+        <h1>
+            Encuentra soluciones <span>digitales</span> y productos premium desde un solo lugar.
+        </h1>
+
+        <p>
+            Marketplace moderno enfocado en conectar usuarios con servicios profesionales,
+            tecnología, soluciones digitales y productos de alta calidad mediante una experiencia elegante,
+            rápida y totalmente profesional.
+        </p>
+
+        <div class="search-box">
+
+            <input type="text" placeholder="Buscar servicios, productos o categorías...">
+
+            <button>
+                Buscar
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="hero-card">
+
+        <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1400&auto=format&fit=crop">
+
+        <h3>Marketplace Profesional</h3>
+
+        <p>
+            Explora soluciones digitales, productos tecnológicos,
+            automatizaciones, marketing, diseño web y mucho más.
+        </p>
+
+        <a href="#">
+            Explorar Plataforma
+        </a>
+
+    </div>
+
+</section>
+
+<!-- SERVICIOS -->
+
+<section class="section" id="servicios">
+
+    <div class="section-header">
+
+        <span>SERVICIOS</span>
+
+        <h2>Soluciones Profesionales</h2>
+
+        <p>
+            Servicios especializados para negocios, emprendedores,
+            empresas y marcas personales.
+        </p>
+
+    </div>
+
+    <div class="grid">
+
+        <!-- CARD -->
+
+        <div class="card">
+
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1400&auto=format&fit=crop">
+
+            <div class="card-content">
+
+                <div class="card-tag">
+                    Desarrollo
+                </div>
+
+                <h3>Diseño Web Premium</h3>
+
+                <p>
+                    Creación de landing pages, tiendas online y páginas corporativas
+                    modernas con diseño premium y optimización avanzada.
+                </p>
+
+                <a href="servicios/diseno-web.html">
+                    Ver Servicio
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="card">
+
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1400&auto=format&fit=crop">
+
+            <div class="card-content">
+
+                <div class="card-tag">
+                    Marketing
+                </div>
+
+                <h3>Marketing Digital</h3>
+
+                <p>
+                    Estrategias publicitarias, branding y crecimiento
+                    digital enfocado en resultados y escalabilidad.
+                </p>
+
+                <a href="servicios/marketing.html">
+                    Ver Servicio
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="card">
+
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop">
+
+            <div class="card-content">
+
+                <div class="card-tag">
+                    Automatización
+                </div>
+
+                <h3>IA y Automatización</h3>
+
+                <p>
+                    Integraciones inteligentes, bots y automatización
+                    de procesos digitales para empresas modernas.
+                </p>
+
+                <a href="servicios/automatizacion.html">
+                    Ver Servicio
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PRODUCTOS -->
+
+<section class="section" id="productos">
+
+    <div class="section-header">
+
+        <span>PRODUCTOS</span>
+
+        <h2>Tecnología y Productos Premium</h2>
+
+        <p>
+            Descubre equipos y productos tecnológicos seleccionados
+            cuidadosamente para ofrecer calidad y rendimiento.
+        </p>
+
+    </div>
+
+    <div class="grid">
+
+        <!-- PRODUCT -->
+
+        <div class="card">
+
+            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1400&auto=format&fit=crop">
+
+            <div class="card-content">
+
+                <div class="card-tag">
+                    Smartphones
+                </div>
+
+                <h3>Celulares Premium</h3>
+
+                <p>
+                    Smartphones modernos con gran rendimiento,
+                    cámaras avanzadas y excelente diseño.
+                </p>
+
+                <a href="productos/smartphones.html">
+                    Ver Producto
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- PRODUCT -->
+
+        <div class="card">
+
+            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=1400&auto=format&fit=crop">
+
+            <div class="card-content">
+
+                <div class="card-tag">
+                    Computadoras
+                </div>
+
+                <h3>Laptops Profesionales</h3>
+
+                <p>
+                    Equipos para estudiantes, trabajo profesional,
+                    diseño, programación y gaming.
+                </p>
+
+                <a href="productos/laptops.html">
+                    Ver Producto
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- PRODUCT -->
+
+        <div class="card">
+
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1400&auto=format&fit=crop">
+
+            <div class="card-content">
+
+                <div class="card-tag">
+                    Audio
+                </div>
+
+                <h3>Audífonos Inalámbricos</h3>
+
+                <p>
+                    Audio premium con cancelación de ruido,
+                    diseño elegante y máxima comodidad.
+                </p>
+
+                <a href="productos/audifonos.html">
+                    Ver Producto
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+        <div class="stat-box">
+            <h3>150+</h3>
+            <p>Servicios Disponibles</p>
+        </div>
+
+        <div class="stat-box">
+            <h3>500+</h3>
+            <p>Productos Publicados</p>
+        </div>
+
+        <div class="stat-box">
+            <h3>24/7</h3>
+            <p>Soporte Digital</p>
+        </div>
+
+        <div class="stat-box">
+            <h3>100%</h3>
+            <p>Experiencia Premium</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <p>
+            © 2026 Andromeda Marketplace. Todos los derechos reservados.
+        </p>
+
+        <div class="footer-links">
+            <a href="#">Privacidad</a>
+            <a href="#">Términos</a>
+            <a href="#">Contacto</a>
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
